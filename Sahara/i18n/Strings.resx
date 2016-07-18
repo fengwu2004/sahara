@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BS_PREF_ADD" xml:space="preserve">
+    <value>Add...</value>
+  </data>
+  <data name="BS_PREF_MODE" xml:space="preserve">
+    <value>Result View Mode</value>
+  </data>
+  <data name="BS_PREF_SYSTEM_PATH" xml:space="preserve">
+    <value>System Path</value>
+  </data>
+  <data name="CM_ABOUT" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="CM_ADD" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="CM_CLOSE" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="CM_DEBUG" xml:space="preserve">
+    <value>Debugging</value>
+  </data>
+  <data name="CM_DELETE" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="CM_ENCODING" xml:space="preserve">
+    <value>Encoding</value>
+  </data>
+  <data name="CM_EXIT" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="CM_EXPORT" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="CM_FILE" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="CM_GENERAL" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="CM_HOME" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="CM_IMPORT" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="CM_MODE" xml:space="preserve">
+    <value>Mode</value>
+  </data>
+  <data name="CM_NAME" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="CM_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="CM_PREF" xml:space="preserve">
+    <value>Preference</value>
+  </data>
+  <data name="CM_REPORT" xml:space="preserve">
+    <value>Reporting</value>
+  </data>
+  <data name="CM_SAVE" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="CM_SEARCH" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="CM_SETTINGS" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="CM_STOP" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="CM_TEMPLATE" xml:space="preserve">
+    <value>Template</value>
+  </data>
+  <data name="CM_VALUE" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="CM_VARIABLES" xml:space="preserve">
+    <value>Variables</value>
+  </data>
+  <data name="DEV_DESC" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DEV_IP_ADDRESS" xml:space="preserve">
+    <value>IP Address</value>
+  </data>
+  <data name="DEV_LOCAL_AE_QUALIFIER" xml:space="preserve">
+    <value>Local AE Qualifier</value>
+  </data>
+  <data name="DEV_LOCAL_AP_ID" xml:space="preserve">
+    <value>Local AP ID</value>
+  </data>
+  <data name="DEV_LOCAL_P_SELECTOR" xml:space="preserve">
+    <value>Local P Selector</value>
+  </data>
+  <data name="DEV_LOCAL_S_SELECTOR" xml:space="preserve">
+    <value>Local S Selector</value>
+  </data>
+  <data name="DEV_LOCAL_T_SELECTOR" xml:space="preserve">
+    <value>Local T Selector</value>
+  </data>
+  <data name="DEV_NAME" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="DEV_REMOTE_AE_QUALIFIER" xml:space="preserve">
+    <value>Remote AE Qualifier</value>
+  </data>
+  <data name="DEV_REMOTE_AP_ID" xml:space="preserve">
+    <value>Remote AP ID</value>
+  </data>
+  <data name="DEV_REMOTE_MAC" xml:space="preserve">
+    <value>Remote MAC</value>
+  </data>
+  <data name="DEV_REMOTE_P_SELECTOR" xml:space="preserve">
+    <value>Remote P Selector</value>
+  </data>
+  <data name="DEV_REMOTE_S_SELECTOR" xml:space="preserve">
+    <value>Remote S Selector</value>
+  </data>
+  <data name="DEV_REMOTE_T_SELECTOR" xml:space="preserve">
+    <value>Remote T Selector</value>
+  </data>
+  <data name="DEV_VENDOR" xml:space="preserve">
+    <value>Vendor</value>
+  </data>
+  <data name="HM_CLOSE_PROJ" xml:space="preserve">
+    <value>Close Project</value>
+  </data>
+  <data name="HM_NEW_PROJ" xml:space="preserve">
+    <value>New Project</value>
+  </data>
+  <data name="HM_OPEN_PROJ" xml:space="preserve">
+    <value>Open Project</value>
+  </data>
+  <data name="HM_RUN_ALL" xml:space="preserve">
+    <value>Run All</value>
+  </data>
+  <data name="HM_RUN_SEL" xml:space="preserve">
+    <value>Run Selected</value>
+  </data>
+  <data name="RIBBON_PROJECT" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="RIBBON_SETTINGS" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="RIBBON_TESTCASE" xml:space="preserve">
+    <value>Test Case</value>
+  </data>
+  <data name="TPS" xml:space="preserve">
+    <value>Test Project Settings</value>
+  </data>
+  <data name="TPS_CITY" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="TPS_COMMENTS" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="TPS_COUNTRY" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="TPS_CUSTOMER" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="TPS_DESC" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="TPS_POSTAL" xml:space="preserve">
+    <value>Postal Code</value>
+  </data>
+  <data name="TPS_STREET" xml:space="preserve">
+    <value>Street</value>
+  </data>
+  <data name="TPS_STREET_NUM" xml:space="preserve">
+    <value>Street Num</value>
+  </data>
+  <data name="TPS_TESTER" xml:space="preserve">
+    <value>Tester</value>
+  </data>
+  <data name="TPS_TEST_LAB" xml:space="preserve">
+    <value>Test Lab</value>
+  </data>
+  <data name="TPS_TEST_SUITE" xml:space="preserve">
+    <value>Test Suite</value>
+  </data>
+  <data name="TPS_VERSION" xml:space="preserve">
+    <value>Version</value>
+  </data>
+</root>

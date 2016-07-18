@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sahara.Core", "Sahara.Core\Sahara.Core.csproj", "{FE278CEB-2A06-4349-BAFD-E18CA9C2E089}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sahara", "Sahara\Sahara.csproj", "{8D7C6A89-C944-4671-B8FE-06EA34D5A16D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sahara.Test", "Sahara.Test\Sahara.Test.csproj", "{2FD00D66-96B7-4B75-9340-D304903EB3D8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FE278CEB-2A06-4349-BAFD-E18CA9C2E089} = {FE278CEB-2A06-4349-BAFD-E18CA9C2E089}
+	EndProjectSection
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Sahara.Installer", "Sahara.Installer\Sahara.Installer.vdproj", "{EB4A60D6-7D68-479A-9BA1-7634581EC7E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE278CEB-2A06-4349-BAFD-E18CA9C2E089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE278CEB-2A06-4349-BAFD-E18CA9C2E089}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE278CEB-2A06-4349-BAFD-E18CA9C2E089}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE278CEB-2A06-4349-BAFD-E18CA9C2E089}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D7C6A89-C944-4671-B8FE-06EA34D5A16D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D7C6A89-C944-4671-B8FE-06EA34D5A16D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D7C6A89-C944-4671-B8FE-06EA34D5A16D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D7C6A89-C944-4671-B8FE-06EA34D5A16D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FD00D66-96B7-4B75-9340-D304903EB3D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FD00D66-96B7-4B75-9340-D304903EB3D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FD00D66-96B7-4B75-9340-D304903EB3D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FD00D66-96B7-4B75-9340-D304903EB3D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB4A60D6-7D68-479A-9BA1-7634581EC7E4}.Debug|Any CPU.ActiveCfg = Debug
+		{EB4A60D6-7D68-479A-9BA1-7634581EC7E4}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" CreatedOn="2015-11-26T16:35:50.57691+08:00" LastModifiedOn="2015-12-01T12:35:15.7697994+08:00">
+  <Name>Test Project</Name>
+  <Description>This is sample</Description>
+  <Tester>Nathan</Tester>
+  <Version>0.2</Version>
+  <ProjectVariables>
+    <Variables>
+      <Variable Name="TEST_BOOLEAN0" Description="This is test boolean" Type="boolean" Value="T" Group="Default" />
+      <Variable Name="TEST_STRING0" Description="This is test string" Type="string" Value="ABCDE0" Group="Test" />
+      <Variable Name="TEST_BOOLEAN1" Description="This is test boolean" Type="boolean" Value="T" Group="Default" />
+      <Variable Name="TEST_STRING1" Description="This is test string" Type="string" Value="ABCDE1" Group="Test" />
+      <Variable Name="TEST_BOOLEAN2" Description="This is test boolean" Type="boolean" Value="T" Group="Default" />
+      <Variable Name="TEST_STRING2" Description="This is test string" Type="string" Value="ABCDE2" Group="Test" />
+      <Variable Name="TEST_BOOLEAN3" Description="This is test boolean" Type="boolean" Value="T" Group="Default" />
+      <Variable Name="TEST_STRING3" Description="This is test string" Type="string" Value="ABCDE3" Group="Test" />
+      <Variable Name="TEST_BOOLEAN4" Description="This is test boolean" Type="boolean" Value="T" Group="Default" />
+      <Variable Name="TEST_STRING4" Description="This is test string" Type="string" Value="ABCDE4" Group="Test" />
+      <Variable Name="TEST_BOOLEAN5" Description="This is test boolean" Type="boolean" Value="T" Group="Default" />
+      <Variable Name="TEST_STRING5" Description="This is test string" Type="string" Value="ABCDE5" Group="Test" />
+      <Variable Name="TEST_BOOLEAN6" Description="This is test boolean" Type="boolean" Value="T" Group="Default" />
+      <Variable Name="TEST_STRING6" Description="This is test string" Type="string" Value="ABCDE6" Group="Test" />
+      <Variable Name="TEST_BOOLEAN7" Description="This is test boolean" Type="boolean" Value="T" Group="Default" />
+      <Variable Name="TEST_STRING7" Description="This is test string" Type="string" Value="ABCDE7" Group="Test" />
+      <Variable Name="TEST_BOOLEAN8" Description="This is test boolean" Type="boolean" Value="T" Group="Default" />
+      <Variable Name="TEST_STRING8" Description="This is test string" Type="string" Value="ABCDE8" Group="Test" />
+      <Variable Name="TEST_BOOLEAN9" Description="This is test boolean" Type="boolean" Value="T" Group="Default" />
+      <Variable Name="TEST_STRING9" Description="This is test string" Type="string" Value="ABCDE9" Group="Test" />
+      <Variable Name="TEST_BOOLEAN10" Description="This is test boolean" Type="boolean" Value="T" Group="Default" />
+      <Variable Name="TEST_STRING10" Description="This is test string" Type="string" Value="ABCDE10" Group="Test" />
+      <Variable Name="TEST_BOOLEAN11" Description="This is new" Type="boolean" Value="F" />
+      <Variable Name="TEST_INT" Description="This is new integer" Type="integer" Value="10" />
+    </Variables>
+  </ProjectVariables>
+  <TestSuitePath>C:\Scripts</TestSuitePath>
+  <TestLabAddress>
+    <Name>Nathan's Test Lab</Name>
+    <Street>Nathan St</Street>
+    <StreetNum>996</StreetNum>
+    <PostalCode>200031</PostalCode>
+    <City>Shanghai</City>
+    <Country>China</Country>
+  </TestLabAddress>
+  <CustomerAddress>
+    <Name>Roger</Name>
+    <Street>Roger St</Street>
+    <StreetNum>153</StreetNum>
+    <PostalCode>200051</PostalCode>
+    <City>Shanghai</City>
+    <Country>China</Country>
+  </CustomerAddress>
+  <Comments>Test comments</Comments>
+</Project>

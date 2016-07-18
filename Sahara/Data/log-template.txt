@@ -1,0 +1,28 @@
+﻿################################################################################
+#
+#     Tool Name:          {{TestProject.Name}}
+#     Version:            {{TestProject.Version}}
+#
+#     TestLab Name:       {{TestProject.TestLabAddress.Name}}
+#     TestLab Street:     {{TestProject.TestLabAddress.Street}}
+#     TestLab House Nr:   {{TestProject.TestLabAddress.StreetNum}}
+#     TestLab P. Code:    {{TestProject.TestLabAddress.PostalCode}}
+#     TestLab City:       {{TestProject.TestLabAddress.City}}
+#     TestLab Country:    {{TestProject.TestLabAddress.Country}}
+#
+#     Customer Name:      {{TestProject.CustomerAddress.Name}}
+#     Customer Street:    {{TestProject.CustomerAddress.Street}}
+#     Customer House Nr:  {{TestProject.CustomerAddress.StreetNum}}
+#     Customer P. Code:   {{TestProject.CustomerAddress.PostalCode}}
+#     Customer City:      {{TestProject.CustomerAddress.City}}
+#     Customer Country:   {{TestProject.CustomerAddress.Country}}
+#
+################################################################################
+
+{{TestScript.Name}}
+
+{{TestResults}}
+
+{{Status}}
+
+################################################################################

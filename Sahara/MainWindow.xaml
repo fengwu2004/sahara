@@ -1,0 +1,305 @@
+﻿<ribbon:RibbonWindow x:Class="Sahara.MainWindow" 
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                     mc:Ignorable="d"
+                     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                     xmlns:local="clr-namespace:Sahara"
+                     xmlns:core="clr-namespace:Sahara.Core;assembly=Sahara.Core"
+                     xmlns:vm="clr-namespace:Sahara.ViewModel"
+                     xmlns:ribbon="clr-namespace:Fluent;assembly=Fluent"
+                     xmlns:avalon="clr-namespace:ICSharpCode.AvalonEdit;assembly=ICSharpCode.AvalonEdit"
+                     xmlns:lex="clr-namespace:WPFLocalizeExtension.Extensions;assembly=WPFLocalizeExtension"
+                     xmlns:Engine="clr-namespace:WPFLocalizeExtension.Engine;assembly=WPFLocalizeExtension"
+                     xmlns:providers="clr-namespace:WPFLocalizeExtension.Providers;assembly=WPFLocalizeExtension"
+                     Engine:LocalizeDictionary.DesignCulture="zh-CN"
+                     providers:ResxLocalizationProvider.DefaultDictionary="Strings"
+                     providers:ResxLocalizationProvider.DefaultAssembly="Sahara" 
+                     Height="768" Width="1024" Loaded="OnLoaded"
+                     Icon="Images/sahara.png" WindowStartupLocation="CenterScreen">
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding SaveCommand.Command}" Gesture="CTRL+S" />
+    </Window.InputBindings>
+    <Window.Title>
+        <MultiBinding StringFormat="{}{0} {1}">
+            <Binding Path="WindowTitle"></Binding>
+            <Binding Path="ContentViewModel.SelectedTestScript.Indicator"></Binding>
+        </MultiBinding>
+    </Window.Title>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:SimpleResultViewModel}">
+            <Grid>
+                <Grid.Resources>
+                    <local:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+                    <local:TestResultStatusToSolidColorBrushConverter x:Key="testResultStatusToSolidColorBrushConverter" />
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <StackPanel Background="White" 
+                                MaxWidth="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type ScrollViewer}}}">
+                        <StackPanel Orientation="Horizontal" Margin="10 10 10 0">
+                            <TextBlock FontSize="32" VerticalAlignment="Center" 
+                                   FontWeight="DemiBold" Text="{Binding Title, Mode=OneWay}"/>
+                            <TextBlock FontSize="14" VerticalAlignment="Bottom" 
+                                   Margin="8 0 0 5" Foreground="#777"
+                                   Text="{Binding Version, Mode=OneWay}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="10 5 0 0">
+                            <Image Source="Images/user.png" Height="14" Margin="0 0 5 0" Visibility="{Binding HasAuthor, Converter={StaticResource boolToVisibilityConverter}}" />
+                            <TextBlock FontSize="14" Text="{Binding Author, Mode=OneWay}" />
+                        </StackPanel>
+                        <TextBlock Margin="10 5 10 20" FontSize="14" Text="{Binding Description, Mode=OneWay}" TextWrapping="Wrap" />
+                        <StackPanel Orientation="Horizontal">
+                            <Border BorderThickness="1" CornerRadius="2" MaxWidth="100" Margin="10 0 0 0" 
+                                HorizontalAlignment="Left" 
+                                Background="{Binding CurrentTestScript.TestResults.Status, Converter={StaticResource testResultStatusToSolidColorBrushConverter}}"
+                                Padding="10 2">
+                                <TextBlock Foreground="White" 
+                                       HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center" 
+                                       FontWeight="Bold"
+                                       Text="{Binding CurrentTestScript.TestResults.Status}"
+                                       TextWrapping="Wrap" />
+                            </Border>
+                            <TextBlock Text="{Binding CurrentTestScript.Message}" Margin="5 0 0 0" Padding="10 2" Foreground="Red" />
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:AdvancedResultViewModel}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="6*"></ColumnDefinition>
+                    <ColumnDefinition Width="3"></ColumnDefinition>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <avalon:TextEditor x:Name="editor" Grid.Column="0"
+                                   FontFamily="Consolas, monospace"
+                                   HorizontalAlignment="Stretch"
+                                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                   ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                                   BorderBrush="#FF828790" 
+                                   BorderThickness="0"
+                                   Padding="5 0 0 0"
+                                   SyntaxHighlighting="{Binding SyntaxHighlightingDefinition}">
+                    <i:Interaction.Behaviors>
+                        <local:AvalonEditBehaviour AvalonText="{Binding Text, ElementName=txtBridge}"/>
+                    </i:Interaction.Behaviors>
+                </avalon:TextEditor>
+                <TextBox x:Name="txtBridge" Text="{Binding CurrentTestScript.Content, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                         Visibility="Hidden" />
+                <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Stretch" />
+                <ListView Grid.Column="2" HorizontalAlignment="Stretch"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      HorizontalContentAlignment="Stretch"
+                      ItemsSource="{Binding CurrentTestScript.TestResults.Results}">
+                    <ListView.Resources>
+                        <DataTemplate DataType="{x:Type core:LogTestResult}">
+                            <TextBlock Foreground="#4e6392" TextWrapping="Wrap">
+                            <Run Text="{Binding Timestamp, Mode=OneWay, StringFormat={}{0:HH:mm:ss}}" />
+                            <Run Text=" " />
+                            <Run Text="{Binding Message, Mode=OneWay}" />
+                            </TextBlock>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type core:ErrorTestResult}">
+                            <TextBlock Foreground="#f04848" TextWrapping="Wrap">
+                            <Run Text="{Binding Timestamp, Mode=OneWay, StringFormat={}{0:HH:mm:ss}}" />
+                            <Run Text=" " />
+                            <Run Text="{Binding Message, Mode=OneWay}" />
+                            </TextBlock>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type core:ExceptionTestResult}">
+                            <TextBlock Foreground="#911710" TextWrapping="Wrap">
+                            <Run Text="{Binding Timestamp, Mode=OneWay, StringFormat={}{0:HH:mm:ss}}" />
+                            <Run Text=" " />
+                            <Run Text="{Binding Message, Mode=OneWay}" />
+                            </TextBlock>
+                        </DataTemplate>
+                    </ListView.Resources>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ContentPresenter Content="{Binding}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ribbon:Ribbon Grid.Row="0" AutomaticStateManagement="False">
+            <ribbon:Ribbon.QuickAccessItems>
+                <ribbon:QuickAccessMenuItem IsChecked="True">
+                    <ribbon:Button DataContext="{Binding SaveCommand}" Header="{lex:Loc CM_SAVE}"
+                                   Icon="{Binding SmallIcon}" LargeIcon="{Binding LargeIcon}"
+                                   Command="{Binding Command}" />
+                </ribbon:QuickAccessMenuItem>
+            </ribbon:Ribbon.QuickAccessItems>
+            <ribbon:Ribbon.Menu>
+                <ribbon:Backstage>
+                    <ribbon:BackstageTabControl>
+                        <ribbon:BackstageTabItem Header="{lex:Loc CM_PREF}" DataContext="{Binding PreferencePaneViewModel}">
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                <local:PreferencePaneView HorizontalAlignment="Left" />
+                            </ScrollViewer>
+                        </ribbon:BackstageTabItem>
+                        <ribbon:BackstageTabItem Header="{lex:Loc CM_ABOUT}">
+                            <StackPanel>
+                                <StackPanel Margin="20 20 0 0" Orientation="Horizontal">
+                                    <TextBlock Text="版本信息" />
+                                    <TextBlock Text="{Binding Version}" Margin="10 0 0 0" />
+                                </StackPanel>
+                                <StackPanel Margin="20 20 0 0" Orientation="Horizontal">
+                                    <TextBlock Text="构建日期" />
+                                    <TextBlock Text="{Binding BuildDateTime, ConverterCulture='zh-CN', StringFormat={}{0:D}}" Margin="10 0 0 0" />
+                                </StackPanel>
+                            </StackPanel>
+                        </ribbon:BackstageTabItem>
+                        <ribbon:SeparatorTabItem></ribbon:SeparatorTabItem>
+                        <ribbon:Button DataContext="{Binding ExitCommand}" Header="{lex:Loc CM_EXIT}"
+                                       Icon="{Binding SmallIcon}" Command="{Binding Command}" 
+                                       IsEnabled="{Binding IsEnabled}" />
+                    </ribbon:BackstageTabControl>
+                </ribbon:Backstage>
+            </ribbon:Ribbon.Menu>
+            <ribbon:RibbonTabItem Header="{lex:Loc CM_HOME}">
+                <ribbon:RibbonGroupBox Header="{lex:Loc RIBBON_PROJECT}">
+                    <ribbon:Button DataContext="{Binding CreateProjectCommand}" Header="{lex:Loc HM_NEW_PROJ}"
+                                   Icon="{Binding SmallIcon}" LargeIcon="{Binding LargeIcon}"
+                                   Command="{Binding Command}" />
+                    <ribbon:Button DataContext="{Binding OpenProjectCommand}" Header="{lex:Loc HM_OPEN_PROJ}"
+                                   Icon="{Binding SmallIcon}" LargeIcon="{Binding LargeIcon}"
+                                   Command="{Binding Command}" />
+                    <ribbon:Button Header="{lex:Loc HM_CLOSE_PROJ}"
+                                   Icon="{Binding CloseProjectCommand.SmallIcon}" 
+                                   LargeIcon="{Binding CloseProjectCommand.LargeIcon}"
+                                   Command="{Binding CloseProjectCommand.Command}" 
+                                   IsEnabled="{Binding IsProjectOpened}" />
+                </ribbon:RibbonGroupBox>
+                <ribbon:RibbonGroupBox Header="{lex:Loc RIBBON_TESTCASE}">
+                    <ribbon:Button DataContext="{Binding RunAllCommand}" Header="{lex:Loc HM_RUN_ALL}" 
+                                   Icon="{Binding SmallIcon}" LargeIcon="{Binding LargeIcon}" 
+                                   Command="{Binding Command}" IsEnabled="{Binding IsEnabled}" />
+                    <ribbon:Button DataContext="{Binding RunSelectedCommand}" Header="{lex:Loc HM_RUN_SEL}" 
+                                   Icon="{Binding SmallIcon}" LargeIcon="{Binding LargeIcon}" 
+                                   Command="{Binding Command}" IsEnabled="{Binding IsEnabled}" />
+                    <ribbon:Button DataContext="{Binding StopCommand}" Header="{lex:Loc CM_STOP}" 
+                                   Icon="{Binding SmallIcon}" LargeIcon="{Binding LargeIcon}" 
+                                   Command="{Binding Command}" IsEnabled="{Binding IsEnabled}" />
+                </ribbon:RibbonGroupBox>
+                <ribbon:RibbonGroupBox Header="{lex:Loc RIBBON_SETTINGS}">
+                    <ribbon:Button DataContext="{Binding SettingCommand}" Header="{lex:Loc CM_SETTINGS}" 
+                                   Icon="{Binding SmallIcon}" LargeIcon="{Binding LargeIcon}" 
+                                   Command="{Binding Command}" IsEnabled="{Binding IsEnabled}" />
+                </ribbon:RibbonGroupBox>
+                <ribbon:RibbonGroupBox Header="{lex:Loc CM_MODE}">
+                    <StackPanel Margin="0 6 0 0">
+                        <ribbon:ToggleButton Header="{lex:Loc CM_REPORT}" GroupName="Mode" IsChecked="{Binding IsSimpleMode, Mode=OneWay}"
+                                             Icon="{Binding SwitchToSimpleCommand.SmallIcon}" LargeIcon="{Binding SwitchToSimpleCommand.LargeIcon}"
+                                             Command="{Binding SwitchToSimpleCommand.Command}" Size="Middle" Margin="0 0 0 2"></ribbon:ToggleButton>
+                        <ribbon:ToggleButton Header="{lex:Loc CM_DEBUG}" GroupName="Mode" IsChecked="{Binding IsAdvancedMode, Mode=OneWay}"
+                                             Icon="{Binding SwitchToAdvancedCommand.SmallIcon}" LargeIcon="{Binding SwitchToAdvancedCommand.LargeIcon}"
+                                             Command="{Binding SwitchToAdvancedCommand.Command}" Size="Middle"></ribbon:ToggleButton>
+                    </StackPanel>
+                </ribbon:RibbonGroupBox>
+                <ribbon:RibbonGroupBox Header="{lex:Loc CM_ENCODING}">
+                    <StackPanel Margin="0 6 10 0">
+                        <ribbon:ComboBox ItemsSource="{Binding SupportedEncodings}" DisplayMemberPath="EncodingName" IsEditable="False"
+                                     SelectedItem="{Binding SelectedEncoding}"></ribbon:ComboBox>
+                    </StackPanel>
+                </ribbon:RibbonGroupBox>
+            </ribbon:RibbonTabItem>
+        </ribbon:Ribbon>
+        <Canvas>
+            <Image Canvas.Top="70" Canvas.Right="10" 
+                   Source="Images/logo.png" Stretch="None" />
+        </Canvas>
+        <DockPanel Grid.Row="1">
+            <TreeView x:Name="tvTestBrowser"
+                      DockPanel.Dock="Left"
+                      FontFamily="Segoe UI"
+                      FontSize="14" 
+                      HorizontalAlignment="Stretch"
+                      ItemsSource="{Binding Targets}"
+                      SelectedItemChanged="tvTestBrowser_SelectedItemChanged"
+                      PreviewMouseRightButtonUp="tvTestBrowser_PreviewMouseRightButtonUp"
+                      Width="240"
+                      VirtualizingPanel.IsVirtualizing="True"
+                      VirtualizingPanel.VirtualizationMode="Recycling">
+                <TreeView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="创建分组" Command="{Binding CreateFolderCommand.Command}"
+                                  Icon="{Binding CreateFolderCommand.LargeIcon}" />
+                        <MenuItem Header="创建脚本" Command="{Binding CreateFileCommand.Command}" 
+                                  Icon="{Binding CreateFileCommand.LargeIcon}" />
+                        <Separator />
+                        <MenuItem Header="删除" Command="{Binding DeleteCommand.Command}" Icon="{Binding DeleteCommand.LargeIcon}" />
+                        <Separator />
+                        <MenuItem Header="重命名" Command="{Binding RenameCommand.Command}" Icon="{Binding RenameCommand.LargeIcon}" />
+                        <Separator />
+                        <MenuItem Header="上移" Command="{Binding MoveUpCommand.Command}" Icon="{Binding MoveUpCommand.LargeIcon}" />
+                        <MenuItem Header="下移" Command="{Binding MoveDownCommand.Command}" Icon="{Binding MoveDownCommand.LargeIcon}" />
+                    </ContextMenu>
+                </TreeView.ContextMenu>
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="{x:Type TreeViewItem}">
+                        <Setter Property="IsExpanded" Value="{Binding IsExpanded}"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="BorderBrush" Value="#ADC6E5"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                    <Condition Property="IsSelectionActive" Value="False"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="BorderBrush" Value="LightGray"/>
+                            </MultiTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TreeView.ItemContainerStyle>
+                <TreeView.Resources>
+                    <LinearGradientBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFD9F4FF" Offset="0"/>
+                        <GradientStop Color="#FF9BDDFB" Offset="1"/>
+                    </LinearGradientBrush>
+                    <LinearGradientBrush x:Key="{x:Static SystemColors.ControlBrushKey}" EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFEEEDED" Offset="0"/>
+                        <GradientStop Color="#FFDDDDDD" Offset="1"/>
+                    </LinearGradientBrush>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="Black" />
+                    <local:TestResultStatusConverter x:Key="testResultStatusConverter" />
+                    <HierarchicalDataTemplate DataType="{x:Type vm:TestScriptGroupViewModel}" ItemsSource="{Binding Children}">
+                        <Border Name="ItemContainerBorder" CornerRadius="2" Background="{Binding Background, RelativeSource={RelativeSource AncestorType=TreeViewItem}}"
+                                BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType=TreeViewItem}}" BorderThickness="1" Padding="0,0,2,0">
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding IsSelected}" Margin="0,2,4,0" />
+                                <TextBlock Text="{Binding Header}" />
+                            </StackPanel>
+                        </Border>
+                    </HierarchicalDataTemplate>
+                    <DataTemplate DataType="{x:Type vm:TestScriptViewModel}">
+                        <Border Name="ItemBorder" CornerRadius="2" Background="{Binding Background, RelativeSource={RelativeSource AncestorType=TreeViewItem}}"
+                                BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType=TreeViewItem}}" BorderThickness="1" Padding="0,0,2,0">
+                            <StackPanel Orientation="Horizontal" Height="20">
+                                <CheckBox IsChecked="{Binding IsSelected}" Margin="0,2,4,0" />
+                                <Image Height="16" Width="16" VerticalAlignment="Center"
+                                   Source="{Binding Status, Converter={StaticResource testResultStatusConverter}, Mode=OneWay}" Margin="0,2,0,0" />
+                                <TextBlock Text="{Binding Header}" VerticalAlignment="Center" Margin="4,0,0,0" />
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </TreeView.Resources>
+            </TreeView>
+            <ContentControl x:Name="contentView" DockPanel.Dock="Right" Content="{Binding ContentViewModel}" />
+        </DockPanel>
+    </Grid>
+</ribbon:RibbonWindow>
